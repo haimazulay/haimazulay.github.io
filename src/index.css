@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 222 47% 5%;
+    --foreground: 213 20% 72%;
+
+    --card: 220 35% 8%;
+    --card-foreground: 213 20% 72%;
+
+    --popover: 220 35% 8%;
+    --popover-foreground: 213 20% 72%;
+
+    --primary: 199 89% 60%;
+    --primary-foreground: 222 47% 5%;
+
+    --secondary: 220 25% 12%;
+    --secondary-foreground: 213 20% 72%;
+
+    --muted: 220 20% 14%;
+    --muted-foreground: 215 15% 50%;
+
+    --accent: 160 84% 39%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 14%;
+    --input: 220 20% 14%;
+    --ring: 199 89% 60%;
+
+    --radius: 0.75rem;
+
+    --heading: 210 40% 96%;
+
+    --glow-primary: 199 89% 60%;
+    --glow-accent: 160 84% 39%;
+
+    --glass-bg: 220 30% 10%;
+    --glass-border: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', 'Assistant', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    direction: rtl;
+    letter-spacing: 0.01em;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3 {
+    color: hsl(var(--heading));
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-family: 'Assistant', 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply relative overflow-hidden rounded-xl;
+    background: hsl(var(--glass-bg) / 0.6);
+    border: 1px solid hsl(var(--glass-border) / 0.06);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-500;
+  }
+
+  .glass-card-hover:hover {
+    border-color: hsl(var(--primary) / 0.2);
+    box-shadow: 0 0 40px -10px hsl(var(--glow-primary) / 0.15),
+                0 20px 60px -20px hsl(var(--background) / 0.8);
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  .glass-header {
+    background: hsl(var(--background) / 0.7);
+    border-bottom: 1px solid hsl(var(--glass-border) / 0.06);
+    backdrop-filter: blur(24px) saturate(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+  }
+
+  .btn-glow {
+    @apply relative inline-block rounded-lg font-bold transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(199 89% 48%));
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 0 20px -5px hsl(var(--glow-primary) / 0.4);
+  }
+
+  .btn-glow:hover {
+    box-shadow: 0 0 40px -5px hsl(var(--glow-primary) / 0.6);
+    transform: translateY(-2px);
+  }
+
+  .dot-grid {
+    background-image: radial-gradient(hsl(var(--glass-border) / 0.08) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .section-glow-top {
+    position: relative;
+  }
+
+  .section-glow-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent);
+  }
+
+  .input-premium {
+    @apply w-full bg-transparent border-0 border-b-2 px-1 py-3 text-foreground transition-all duration-300 outline-none;
+    border-color: hsl(var(--border));
+  }
+
+  .input-premium:focus {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 4px 12px -6px hsl(var(--glow-primary) / 0.3);
+  }
+
+  .input-premium::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px -5px hsl(var(--glow-primary) / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 40px -2px hsl(var(--glow-primary) / 0.6);
+    }
+  }
+}
