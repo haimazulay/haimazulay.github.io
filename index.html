@@ -4,49 +4,500 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haim Azulay | DevOps & Automation</title>
+    <title>חיים אוטומציה | פתרונות ענן, תשתיות Monday.com ואינטגרציות קוד (Python)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #0d1117;
-            /* כהה בסגנון GitHub */
-            color: #c9d1d9;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        :root {
+            --bg-color: #0d1117;
+            --container-bg: #161b22;
+            --border-color: #30363d;
+            --text-main: #c9d1d9;
+            --text-light: #8b949e;
+            --primary: #58a6ff;
+            --primary-hover: #1f6feb;
+            --accent: #3fb950;
+            --danger: #f85149;
+            --font-family: 'Assistant', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #f0f6fc;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
         }
 
         .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: rgba(13, 17, 23, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* --- Hero --- */
+        .hero {
+            padding: 10rem 0 7rem;
             text-align: center;
-            border: 1px solid #30363d;
+            background: radial-gradient(circle at center, #1b2635 0%, #0d1117 70%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            border-radius: 6px;
+            border: 1px solid var(--primary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+            border-color: var(--primary-hover);
+        }
+
+        /* --- Pain Point --- */
+        .pain-point {
+            padding: 6rem 0;
+            background-color: var(--container-bg);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .pain-point h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .pain-point h2 span {
+            color: var(--danger);
+        }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pain-item {
+            background-color: var(--bg-color);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .pain-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .pain-item h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .pain-item p {
+            color: var(--text-light);
+        }
+
+        /* --- Why Us --- */
+        .why-us {
+            padding: 7rem 0;
+            text-align: center;
+        }
+
+        .why-us h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .why-sub-text {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .why-item {
+            padding: 2rem;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            transition: border-color 0.2s;
+        }
+
+        .why-item:hover {
+            border-color: var(--border-color);
+        }
+
+        .why-item .icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .why-item h3 {
+            margin-bottom: 1rem;
+        }
+
+        .why-item p {
+            color: var(--text-light);
+        }
+
+        /* --- Services --- */
+        .services {
+            padding: 7rem 0;
+            background-color: var(--container-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .services h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background-color: var(--bg-color);
             padding: 2rem;
             border-radius: 8px;
-            background: #161b22;
+            border: 1px solid var(--border-color);
         }
 
-        h1 {
-            color: #58a6ff;
+        .service-card h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
         }
 
-        p {
-            font-size: 1.2rem;
+        .service-details li {
+            position: relative;
+            padding-right: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-light);
         }
 
-        .status {
-            color: #3fb950;
-            font-weight: bold;
+        .service-details li::before {
+            content: "✓";
+            color: var(--accent);
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        /* --- Contact --- */
+        .contact {
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--container-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: right;
+        }
+
+        .contact-form label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.5rem;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-main);
+            font-family: var(--font-family);
+            font-size: 1rem;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .contact-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-light);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .pain-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-list {
+                grid-template-columns: 1fr;
+            }
+
+            .service-list min-width {
+                min-width: 100%;
+            }
+
+            .contact-wrapper {
+                padding: 2rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Haim Azulay</h1>
-        <p>DevOps & Automation Developer</p>
-        <div class="status">האתר בבנייה... בקרוב יהיה כאן משהו מעניין.</div>
-    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo">חיים אוטומציה</div>
+            <a href="#contact" class="nav-link btn">בואו נדבר</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>כשמערכת עובדת,<br>אתם <span>פנויים לצמוח.</span></h1>
+            <p>פתרונות אוטומציה מבוססי ענן, תשתיות Monday.com חכמות ואינטגרציות קוד (Python) שתופרות את כל הקצוות –
+                מהליד הראשון ועד לשורת הרווח.</p>
+            <a href="#contact" class="btn">בואו נתכנן את השקט שלכם</a>
+        </div>
+    </section>
+
+    <section id="pain" class="pain-point">
+        <div class="container">
+            <h2>הליד שנעלם בין המיילים עולה לכם <span>יותר ממה שחשבתם.</span></h2>
+            <div class="pain-grid">
+                <div class="pain-item">
+                    <h3>"חור שחור" של טעויות אנוש</h3>
+                    <p>עבודה ידנית היא לא רק מעייפת. הודעה בוואטסאפ שלא נענתה, הזמנה שלא סונכרנה ב-CRM, או שעות של
+                        העתק-הדבק בין מערכות. אלו הרגעים שבהם העסק שלכם נעצר.</p>
+                </div>
+                <div class="pain-item">
+                    <h3>כאוס תפעולי</h3>
+                    <p>אני כאן כדי להפוך את הכאוס למכונה שפועלת מעצמה, 24/7. הכל מסונכרן, מתועד ועובד חלק.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why" class="why-us">
+        <div class="container">
+            <h2>למה דווקא 'חיים אוטומציה'?</h2>
+            <p class="why-sub-text">אני לא רק 'מחבר קוביות' – אני בונה ארכיטקטורה. אני מביא מעל 10 שנות ניסיון בחזית
+                האוטומציה של הייטק הישראלי.</p>
+            <div class="why-grid">
+                <div class="why-item">
+                    <div class="icon">מעבר ל-No-Code</div>
+                    <h3>קוד ענן (Python/Azure)</h3>
+                    <p>בעוד שרוב השוק מסתמך על פתרונות מדף מוגבלים, אני מתמחה בבניית אוטומציות ענן מותאמות אישית
+                        (Cloud-Native). פותר בעיות מורכבות ששום כלי גנרי לא יכול לפתור.</p>
+                </div>
+                <div class="why-item">
+                    <div class="icon">הטמעה אופרטיבית</div>
+                    <h3>ניסיון מעשי בעסקים</h3>
+                    <p>אני מביא איתי ניסיון מעשי בהטמעת תהליכי עבודה בעסקים חיים. אני יודע איך לגרום למערכת לשרת את
+                        האופרציה, ולא להפך.</p>
+                </div>
+                <div class="why-item">
+                    <div class="icon">ארכיטקטורה Monday.com</div>
+                    <h3>תשתיות חכמות</h3>
+                    <p>בניית בורדים חכמים, ניהול מלאי, מעקב אספקות וסנכרון מלא בין מחלקות על התשתית המוכרת.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2>סל השירותים</h2>
+            <div class="service-list">
+                <div class="service-card">
+                    <h3>אוטומציית ענן וקוד</h3>
+                    <ul class="service-details">
+                        <li>פיתוח פתרונות Custom יציבים</li>
+                        <li>אבטחה מתקדמת לניהול מידע מורכב</li>
+                        <li>אינטגרציות API עמוקות</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>ארכיטקטורת Monday.com</h3>
+                    <ul class="service-details">
+                        <li>בורדים חכמים לניהול פרויקטים</li>
+                        <li>ניהול מלאי ומעקב אספקות</li>
+                        <li>סנכרון מלא בין מחלקות</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>דפי נחיתה ממירים</h3>
+                    <ul class="service-details">
+                        <li>עיצוב ובניית דפי נחיתה מקצועיים</li>
+                        <li>חיבור ישיר לאוטומציה</li>
+                        <li>מקסום המרות מפרסום</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>מעטפת תחזוקה כוללת</h3>
+                    <ul class="service-details">
+                        <li>שירות SLA מקיף לכל פתרון</li>
+                        <li>ניטור תקלות יזום</li>
+                        <li>עדכוני API ואופטימיזציה שוטפת</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>דברו איתי</h2>
+            <div class="contact-wrapper">
+                <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">בואו נתכנן את השקט שלכם.
+                    שלחו פרטים ואחזור אליכם בהקדם.</p>
+                <form class="contact-form">
+                    <label for="name">שם מלא</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="phone">טלפון</label>
+                    <input type="tel" id="phone" name="phone" required>
+
+                    <label for="email">אימייל</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="problem">מה התהליך שהכי מעכב אתכם היום?</label>
+                    <textarea id="problem" name="problem"></textarea>
+
+                    <button type="submit" class="btn" style="width: 100%;">אני רוצה שקט בניהול</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 חיים אוטומציה. כל הזכויות שמורות.</p>
+            <p>אוטומציה | ענן | Python | Monday.com</p>
+            <p>azulay.uk</p>
+        </div>
+    </footer>
+
 </body>
 
 </html>
