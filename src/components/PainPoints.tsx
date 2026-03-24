@@ -44,16 +44,18 @@ const PainPoints = () => {
           {painItems.map((item, i) => (
             <motion.div
               key={i}
-              className="glass-card-hover p-10"
+              className="glass-card p-10 cursor-default group border border-transparent hover:border-primary/20 transition-all duration-500"
               initial={{ opacity: 0, y: 30 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.15 + i * 0.12 }}
+              whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.3 } }}
             >
-              <div className="text-primary mb-5">{item.icon}</div>
-              <h3 className="text-xl font-display font-bold text-heading mb-4">
+              <div className="text-primary mb-5 group-hover:text-accent transition-colors duration-300">{item.icon}</div>
+              <h3 className="text-xl font-display font-bold text-heading mb-4 group-hover:text-primary transition-colors duration-300">
                 {item.title}
               </h3>
               <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+              <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: '0 0 60px -15px hsl(199 89% 60% / 0.2), 0 25px 50px -20px hsl(222 47% 5% / 0.8)' }} />
             </motion.div>
           ))}
         </div>

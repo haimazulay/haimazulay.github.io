@@ -44,12 +44,12 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
         >
-          <a
-            href="#contact"
+          <button
+            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             className="btn-glow px-12 py-4 text-lg pulse-glow"
           >
             בואו נתכנן את השקט שלכם
-          </a>
+          </button>
         </motion.div>
       </div>
 

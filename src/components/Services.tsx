@@ -62,14 +62,15 @@ const Services = () => {
           {services.map((service, i) => (
             <motion.div
               key={i}
-              className="glass-card-hover p-8 md:p-10"
+              className="glass-card p-8 md:p-10 cursor-default group border border-transparent hover:border-primary/20 transition-all duration-500 relative overflow-hidden"
               initial={{ opacity: 0, y: 30 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
+              whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.3 } }}
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="text-primary">{service.icon}</div>
-                <h3 className="text-xl font-display font-bold text-heading">
+                <div className="text-primary group-hover:text-accent transition-colors duration-300">{service.icon}</div>
+                <h3 className="text-xl font-display font-bold text-heading group-hover:text-primary transition-colors duration-300">
                   {service.title}
                 </h3>
               </div>
@@ -91,6 +92,7 @@ const Services = () => {
                   </li>
                 ))}
               </ul>
+              <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: '0 0 60px -15px hsl(199 89% 60% / 0.2), 0 25px 50px -20px hsl(222 47% 5% / 0.8)' }} />
             </motion.div>
           ))}
         </div>

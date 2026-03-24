@@ -70,17 +70,19 @@ const WhyUs = () => {
           {whyItems.map((item, i) => (
             <motion.div
               key={i}
-              className="glass-card-hover p-10 text-center"
+              className="glass-card p-10 text-center cursor-default group border border-transparent hover:border-primary/20 transition-all duration-500 relative overflow-hidden"
               initial={{ opacity: 0, y: 30 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+              whileHover={{ y: -8, scale: 1.03, transition: { duration: 0.3 } }}
             >
-              <div className="text-accent mb-4 flex justify-center">{item.icon}</div>
+              <div className="text-accent mb-4 flex justify-center group-hover:text-primary transition-colors duration-300">{item.icon}</div>
               <span className="text-xs text-primary uppercase tracking-[0.15em] font-semibold">
                 {item.label}
               </span>
-              <h3 className="text-xl font-display font-bold mt-3 mb-4">{item.title}</h3>
+              <h3 className="text-xl font-display font-bold mt-3 mb-4 group-hover:text-primary transition-colors duration-300">{item.title}</h3>
               <p className="text-muted-foreground leading-relaxed text-sm">{item.description}</p>
+              <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: '0 0 60px -15px hsl(199 89% 60% / 0.2), 0 25px 50px -20px hsl(222 47% 5% / 0.8)' }} />
             </motion.div>
           ))}
         </div>
