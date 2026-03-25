@@ -54,6 +54,11 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
   }
 
   body {
@@ -66,7 +71,9 @@
     line-height: 1.7;
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     color: hsl(var(--heading));
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -90,7 +97,7 @@
   .glass-card-hover:hover {
     border-color: hsl(var(--primary) / 0.2);
     box-shadow: 0 0 40px -10px hsl(var(--glow-primary) / 0.15),
-                0 20px 60px -20px hsl(var(--background) / 0.8);
+      0 20px 60px -20px hsl(var(--background) / 0.8);
     transform: translateY(-4px) scale(1.01);
   }
 
@@ -157,9 +164,12 @@
   }
 
   @keyframes pulseGlow {
-    0%, 100% {
+
+    0%,
+    100% {
       box-shadow: 0 0 20px -5px hsl(var(--glow-primary) / 0.4);
     }
+
     50% {
       box-shadow: 0 0 40px -2px hsl(var(--glow-primary) / 0.6);
     }
